@@ -1,0 +1,14 @@
+.products-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  border-right: 1px solid #d5d5d5;
+  border-left: 1px solid #d5d5d5;
+  max-width: 1440px;
+  width: 100%;
+  border-radius: 5px;
+}

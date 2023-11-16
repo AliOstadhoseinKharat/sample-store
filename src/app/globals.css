@@ -2,26 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Reusing styles */
 .flex-rcc {
   @apply flex flex-row justify-center items-center;
 }
 
 .flex-rbc {
-	@apply flex flex-row justify-between items-center
+  @apply flex flex-row justify-between items-center;
 }
-
 
 .flex-rsc {
-	@apply flex flex-row justify-start items-center
+  @apply flex flex-row justify-start items-center;
 }
 
+.flex-rcs {
+  @apply flex flex-row justify-center items-start;
+}
 
-.flex-rec {
-	@apply flex flex-row justify-end items-center
+.flex-ccs {
+  @apply flex flex-col justify-center items-start;
 }
 
 .flex-csc {
-	@apply flex flex-col justify-start items-center
+  @apply flex flex-col justify-start items-center;
+}
+
+.flex-rec {
+  @apply flex flex-row justify-end items-center;
+}
+
+.flex-csc {
+  @apply flex flex-col justify-start items-center;
+}
+
+/* font familt */
+@font-face {
+  font-family: "IranSans";
+  src: url("../assets/fonts/irsans.ttf") format("ttf");
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Set default font family */
+@font-face {
+  font-family: "IranSansBold";
+  src: url("../assets/fonts/irsansb.ttf") format("ttf");
+  font-style: normal;
+  font-weight: 600;
+}
+
+* {
+  font-family: "IranSans" !important;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -117,6 +148,7 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,

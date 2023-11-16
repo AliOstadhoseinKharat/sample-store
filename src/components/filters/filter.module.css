@@ -1,0 +1,22 @@
+.filter-btn {
+  color: #9a9a9a;
+  border: none;
+  color: #9a9a9a;
+  height: 60px;
+  background: none;
+  outline: none;
+  width: 20%;
+  border-bottom: 1px solid #d5d5d5;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.active-filter {
+  border-top: 4px solid #4990e2;
+  border-left: 1px solid #d5d5d5;
+  border-right: 1px solid #d5d5d5;
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+  color: #4990e2;
+  font-weight: 600;
+}
