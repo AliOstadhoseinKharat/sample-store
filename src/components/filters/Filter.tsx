@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./filter.module.css";
+import { ProductContext } from "@/api/Context/ProductContext";
 
 export default function Filter() {
-  const [activeFilter, setActiveFilter] = useState("");
+  const { activeFilter, setActiveFilter } = useContext(ProductContext);
 
   return (
     // Filter component container
@@ -19,41 +20,45 @@ export default function Filter() {
         همه محصولات
       </button>
       <button
-        onClick={() => setActiveFilter("bestSelling")}
+        onClick={() => setActiveFilter("mostSaleProducts")}
         className={
           styles["filter-btn"] +
           " " +
-          `${activeFilter == "bestSelling" ? styles["active-filter"] : ""}`
+          `${activeFilter == "mostSaleProducts" ? styles["active-filter"] : ""}`
         }
       >
         پرفروش ترین
       </button>
       <button
-        onClick={() => setActiveFilter("newest")}
+        onClick={() => setActiveFilter("newestProducts")}
         className={
           styles["filter-btn"] +
           " " +
-          `${activeFilter == "newest" ? styles["active-filter"] : ""}`
+          `${activeFilter == "newestProducts" ? styles["active-filter"] : ""}`
         }
       >
         جدیدترین
       </button>
       <button
-        onClick={() => setActiveFilter("mostExpensive")}
+        onClick={() => setActiveFilter("mostExpensiveProducts")}
         className={
           styles["filter-btn"] +
           " " +
-          `${activeFilter == "mostExpensive" ? styles["active-filter"] : ""}`
+          `${
+            activeFilter == "mostExpensiveProducts"
+              ? styles["active-filter"]
+              : ""
+          }`
         }
       >
         گران ترین
       </button>
       <button
-        onClick={() => setActiveFilter("cheapest")}
+        onClick={() => setActiveFilter("cheapestProducts")}
         className={
           styles["filter-btn"] +
           " " +
-          `${activeFilter == "cheapest" ? styles["active-filter"] : ""}`
+          `${activeFilter == "cheapestProducts" ? styles["active-filter"] : ""}`
         }
       >
         ارزان ترین

@@ -1,19 +1,22 @@
 "use client";
 import styles from "./product.module.css";
 import ProductBox from "../product_box/ProductBox";
-import { useState } from "react";
+import { useContext } from "react";
+import { ProductContext } from "../../api/Context/ProductContext";
 
 export default function Product() {
-  const [products, setProducts] = useState([1, 2, 3, 4, 5, 6, 7, 8]);
+  const { products } = useContext(ProductContext);
+
   return (
     // Product component container
     <div className={styles["products-container"]}>
-      {products.map((p, i) => {
-        {
-          /* Product box */
-        }
-        return <ProductBox key={i} />;
-      })}
+      {products.length > 0 &&
+        products?.map((p: Object, i: number) => {
+          {
+            /* Product box */
+          }
+          return <ProductBox productInfo={p} key={i} />;
+        })}
     </div>
   );
 }
