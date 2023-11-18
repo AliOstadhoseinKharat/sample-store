@@ -35,25 +35,23 @@
   @apply flex flex-col justify-start items-center;
 }
 
-/* font familt */
+/* font family */
+
 @font-face {
-  font-family: "IranSans";
-  src: url("../assets/fonts/irsans.ttf") format("ttf");
+  font-family: IRANSansx;
+  src: url('../assets/fonts/IranSansX/Webfonts/fonts/woff/IRANSansX-Regular.woff') format('woff2');
+  font-weight: 100;
   font-style: normal;
-  font-weight: 400;
 }
 
 /* Set default font family */
-@font-face {
-  font-family: "IranSansBold";
-  src: url("../assets/fonts/irsansb.ttf") format("ttf");
-  font-style: normal;
-  font-weight: 600;
+* {
+  box-sizing: border-box;
+  font-family: IRANSansx !important;
+  direction: rtl;
 }
 
-* {
-  font-family: "IranSans" !important;
-}
+
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -163,17 +161,21 @@ nav,
 section {
   display: block;
 }
+
 body {
   line-height: 1;
 }
+
 ol,
 ul {
   list-style: none;
 }
+
 blockquote,
 q {
   quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -181,6 +183,7 @@ q:after {
   content: "";
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;

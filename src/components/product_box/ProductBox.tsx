@@ -14,8 +14,8 @@ interface ProductInfo {
 }
 
 interface ProductBoxProps {
-  key: string;
-  productInfo: ProductInfo;
+  key: number;
+  productInfo: ProductInfo | any;
 }
 
 export default function ProductBox({ key, productInfo }: ProductBoxProps) {
