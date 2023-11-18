@@ -26,25 +26,25 @@ export default function CartBox({ cartInfo, key }: CartProps | any) {
           width={240}
           height={180}
           className=" pt-4 pr-4"
-          src={cartInfo?.productGallery}
+          src={cartInfo?.productGallery ? cartInfo?.productGallery : ""}
           alt="Sunset in the mountains"
         />
       </div>
       <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
         <div className="mb-8">
-          <div className="text-gray-900 font-bold text-xl mb-2">
+          <h3 className="text-gray-900 font-bold text-xl mb-2">
             {cartInfo.product_name}
-          </div>
+          </h3>
           <p className="text-gray-700 text-base">
             {cartInfo.product_introduction}
           </p>
         </div>
         <div className="flex items-center">
-          <div className="text-sm">
+          {/* <div className="text-sm"> */}
             <p className="text-gray-900 leading-none">
               تعداد : {cartInfo.count}
             </p>
-          </div>
+          {/* </div> */}
         </div>
       </div>
     </div>

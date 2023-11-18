@@ -4,72 +4,88 @@ import plusBold from "../../assets/icons/plus-bold.svg";
 import minus from "../../assets/icons/minus.svg";
 import { useContext } from "react";
 import { CartContext } from "../../api/Context/CartContext";
-import update from "immutability-helper";
 
-interface ProductProp {
-  key: number;
-  productInfo: {
-    productGallery: string;
-    product_name: string;
-    product_price: number;
-    count?: number | undefined;
-  };
+interface ProductInfo {
+  id: number;
+  productGallery: string;
+  product_name: string;
+  product_price: number;
+  count: number;
 }
 
-export default function ProductBox({ key, productInfo }: ProductProp | any) {
+interface ProductBoxProps {
+  key: string;
+  productInfo: ProductInfo;
+}
+
+export default function ProductBox({ key, productInfo }: ProductBoxProps) {
   // cart products context
   const { cartProducts, setCartProducts } = useContext(CartContext);
 
   // Function for add to cart
-  const addToCart = (p: any) => {
-    const found: any = cartProducts.find((item: any) => item?.id == p?.id);
+  const addToCart = (p: ProductInfo) => {
+    // found specific cart's product
+    const found: Partial<ProductInfo> | undefined = cartProducts.find(
+      (item: Partial<ProductInfo>) => item.id === p.id
+    );
+    // found specific cart's product index
     const foundIndex: number = cartProducts.findIndex(
-      (item: any) => item?.id == p?.id
+      (item: Partial<ProductInfo>) => item.id === p.id
     );
 
-    // check product exist or not
     if (found) {
-      let updatedCart = update(cartProducts[foundIndex], {
-        count: { $set: found.count + 1 },
-      });
+      const updatedCart: Partial<ProductInfo> = {
+        ...found,
+        count: found.count ? found.count + 1 : 1,
+      };
 
-      let newData: any = update(cartProducts, {
-        $splice: [[foundIndex, 1, updatedCart]],
-      });
+      const newData: any = [
+        ...cartProducts.slice(0, foundIndex),
+        updatedCart,
+        ...cartProducts.slice(foundIndex + 1),
+      ];
+
       setCartProducts(newData);
       localStorage.setItem("cartProducts", JSON.stringify(newData));
     } else {
-      const newData: any = update(cartProducts, {
-        $push: [{ ...p, count: 1 }],
-      });
+      const newData: any = cartProducts.concat({ ...p, count: 1 });
+
       setCartProducts(newData);
       localStorage.setItem("cartProducts", JSON.stringify(newData));
     }
   };
 
   // Function for remove from cart
-  const removeFromCart = (p: any) => {
-    const found: any = cartProducts.find((item: any) => item?.id == p?.id);
-    const foundIndex: number = cartProducts.findIndex(
-      (item: any) => item?.id == p?.id
+  const removeFromCart = (p: ProductInfo) => {
+    // found specific cart's product
+    const found: Partial<ProductInfo> | undefined = cartProducts.find(
+      (item: Partial<ProductInfo>) => item.id === p.id
+    );
+    // found specific cart's product index
+    const foundIndex = cartProducts.findIndex(
+      (item: Partial<ProductInfo>) => item.id === p.id
     );
 
-    // check product exist or not
-    if (found && found.count > 1) {
-      let updatedCart: any = update(cartProducts[foundIndex], {
-        count: { $set: found.count - 1 },
-      });
+    if (found && found.count && found.count > 1) {
+      const updatedCart: Partial<ProductInfo> = {
+        ...found,
+        count: found.count - 1,
+      };
 
-      let newData: any = update(cartProducts, {
-        $splice: [[foundIndex, 1, updatedCart]],
-      });
+      const newData: any = [
+        ...cartProducts.slice(0, foundIndex),
+        updatedCart,
+        ...cartProducts.slice(foundIndex + 1),
+      ];
+
       setCartProducts(newData);
-      // Store cart data into localstorage
       localStorage.setItem("cartProducts", JSON.stringify(newData));
     } else {
-      let newData: any = cartProducts.filter((item: any) => item.id != p.id);
+      const newData: any = cartProducts.filter(
+        (item: Partial<ProductInfo>) => item.id !== p.id
+      );
+
       setCartProducts(newData);
-      // Store cart data into localstorage
       localStorage.setItem("cartProducts", JSON.stringify(newData));
     }
   };
@@ -84,19 +100,19 @@ export default function ProductBox({ key, productInfo }: ProductProp | any) {
         width={240}
         height={180}
         className="mx-auto pt-4"
-        src={productInfo?.productGallery}
+        src={productInfo.productGallery}
         alt="Sunset in the mountains"
       />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2">
-          {productInfo?.product_name.slice(0, 30)}
+          {productInfo.product_name.slice(0, 30)}
         </div>
         <p className="text-gray-700 text-base">
-          {productInfo?.product_name.slice(0, 50)}
+          {productInfo.product_name.slice(0, 50)}
         </p>
 
         <h3 className="text-left font-bold text-xl my-[24px]">
-          تومان {Number(productInfo?.product_price)?.toLocaleString("en-us")}
+          تومان {Number(productInfo.product_price)?.toLocaleString("en-us")}
         </h3>
       </div>
       <div className="flex-rec px-6 pb-[24px]">
